@@ -1,83 +1,52 @@
-                                          introduccion
+Esquema del Sistema de Kiosko
 
-Tkinter es una biblioteca estándar de Python que se utiliza para crear interfaces gráficas de 
-usuario (GUI, por sus siglas en inglés). Proporciona una forma sencilla de crear ventanas,
-botones, cuadros de texto y otros elementos de interfaz gráfica. Tkinter se basa en el toolkit
-Tk, que es una biblioteca gráfica multiplataforma desarrollada originalmente para Tcl
-(Tool Command Language).
+    Archivos principales:
+        main.py: El punto de entrada del programa.
+        gui.py: Maneja la interfaz gráfica del usuario.
+        database.py: Maneja las operaciones de la base de datos.
+        kiosk.py: Contiene la lógica principal del kiosko.
 
-Con Tkinter, los desarrolladores pueden diseñar y construir interfaces gráficas de usuario
-interactivas para sus programas de Python. Proporciona una variedad de widgets (componentes 
-de interfaz gráfica) que se pueden utilizar para crear aplicaciones con botones, cajas de 
-texto, menús desplegables, listas y mucho más. También es posible personalizar la apariencia 
-de los widgets y responder a eventos, como hacer clic en un botón o escribir en un cuadro de texto.
+    Clases principales:
+        KioskApp en main.py
+        MainWindow en gui.py
+        Database en database.py
+        Kiosk en kiosk.py
 
-Tkinter es ampliamente utilizado debido a su disponibilidad como parte de la biblioteca estándar de
-Python, lo que significa que no requiere instalaciones adicionales. Esto hace que sea fácil de usar 
-y distribuir aplicaciones con interfaces gráficas en Python
+        Explicación Detallada de Cada Clase y Método
+Clase: KioskApp (Archivo: main.py)
 
+    __init__(self): Inicializa la aplicación creando una instancia de MainWindow.
+    run(self): Ejecuta el método mainloop de MainWindow para iniciar la aplicación.
 
-Tkinter es una interfaz para el toolkit Tcl/Tk. Tcl (Tool Command Language) es un lenguaje de
-scripting creado por John Ousterhout en la década de 1980, mientras que Tk es un toolkit GUI 
-asociado a Tcl. La combinación de Tcl y Tk permitió a los desarrolladores crear interfaces
-gráficas de usuario de manera eficiente.
+Clase: MainWindow (Archivo: gui.py)
 
-Python, desde sus primeras versiones, incluyó Tkinter como una biblioteca estándar para la creación
-de GUIs. A lo largo de los años, Tkinter ha evolucionado junto con Python, manteniéndose como una 
-opción popular para el desarrollo de aplicaciones de escritorio.
-Usos de Tkinter
+    __init__(self): Inicializa la ventana principal, configura el título y el tamaño, crea una instancia
+    de Kiosk y llama a setup_ui para configurar la interfaz.
+    
+    setup_ui(self): Configura los elementos de la interfaz gráfica como etiquetas y botones.
+    
+    on_buy(self): Método que maneja la compra de un producto llamando a buy_product de Kiosk 
+    y muestra un mensaje con el resultado de la compra.
+    on_load_stock(self): Método que maneja la carga de stock llamando a load_stock de Kiosk 
+    y muestra un mensaje con el resultado de la carga.
 
-    Aplicaciones de Escritorio: Tkinter es ampliamente utilizado para desarrollar aplicaciones de
-escritorio. Su facilidad de uso y su inclusión en la biblioteca estándar de Python lo hacen una 
-opción conveniente para proyectos personales y profesionales.
+Clase: Database (Archivo: database.py)
 
-    Herramientas Educativas: Tkinter es una excelente herramienta para enseñar conceptos de programación
-y diseño de interfaces gráficas. Muchos cursos introductorios de programación utilizan Tkinter para demostrar 
-la creación de GUIs.
+    __init__(self): Inicializa la base de datos con algunos productos y sus detalles,
+    y una lista para registrar transacciones.
+    get_product(self, name): Devuelve los detalles del producto si existe.
+    update_stock(self, name, quantity): Actualiza el stock del producto restando 
+    la cantidad comprada.
+    add_stock(self, name, quantity, buy_price): Añade stock a un producto existente
+    o lo crea si no existe.
+    add_transaction(self, name, quantity, sell_price, date_of_sale, date_of_purchase):
+    Registra una transacción incluyendo el producto, cantidad, precio de venta, fecha de venta, 
+    fecha de compra y ganancia.
 
-    Prototipos Rápidos: Gracias a su simplicidad, Tkinter es ideal para crear prototipos de aplicaciones de manera
-rápida. Esto permite a los desarrolladores probar y refinar sus ideas sin invertir demasiado tiempo en la implementación
-inicial.
+Clase: Kiosk (Archivo: kiosk.py)
 
-    Aplicaciones Internas: En entornos corporativos, Tkinter se utiliza a menudo para desarrollar aplicaciones internas
-que facilitan procesos específicos, como la gestión de bases de datos o la automatización de tareas.
-
-Ventajas de Tkinter
-
-    Integración con Python: Tkinter está integrado en la biblioteca estándar de Python, lo que significa que no es necesario
-    instalar bibliotecas adicionales para empezar a usarlo.
-
-    Simplicidad: La API de Tkinter es fácil de entender y usar, lo que permite a los desarrolladores crear GUIs sin una curva 
-    de aprendizaje empinada.
-
-    Multiplataforma: Las aplicaciones desarrolladas con Tkinter pueden ejecutarse en múltiples plataformas (Windows, macOS y Linux)
-    sin necesidad de modificaciones significativas.
-
-    Documentación y Comunidad: Tkinter cuenta con una amplia documentación y una comunidad activa que ofrece soporte y recursos, 
-    lo que facilita la resolución de problemas y la mejora continua de habilidades.
-
-Desventajas de Tkinter
-
-    Limitaciones en Diseño y Estilo: Aunque Tkinter es fácil de usar, sus capacidades de diseño y personalización son limitadas en
-    comparación con otras bibliotecas GUI más modernas.
-
-    Rendimiento: Para aplicaciones más grandes y complejas, Tkinter puede no ser la opción más eficiente en términos de rendimiento.
-    Otras bibliotecas GUI como PyQt o Kivy pueden ofrecer mejor rendimiento y flexibilidad.
-
-    Estética: Las aplicaciones creadas con Tkinter pueden parecer anticuadas en comparación con aplicaciones modernas que utilizan 
-    otras tecnologías de interfaz gráfica.
-
-    Soporte para Multimedia: Tkinter tiene capacidades limitadas para manejar contenido multimedia avanzado, lo que puede ser un 
-    inconveniente para aplicaciones que requieran una integración multimedia robusta.
-
-Conclusión
-
-Tkinter sigue siendo una herramienta relevante y útil para el desarrollo de interfaces gráficas de usuario en Python. Su facilidad de uso,
-integración con Python y capacidades multiplataforma lo hacen una opción atractiva para desarrolladores de todos los niveles. Sin embargo, 
-sus limitaciones en diseño, rendimiento y soporte multimedia deben ser consideradas al elegir la herramienta adecuada 
-para un proyecto específico.
-
-Referencias
-
-    Python Software Foundation. "Tkinter — Python interface to Tcl/Tk". Disponible en: https://docs.python.org/3/library/tkinter.html
-    Ousterhout, J. (1994). "Tcl and the Tk Toolkit". Addison-Wesley Professional.
+    __init__(self): Inicializa la clase con una instancia de Database.
+    buy_product(self, name, quantity, sell_price, date_of_sale): Realiza la compra de un producto 
+    verificando el stock disponible, actualizándolo en la base de datos y registrando la transacción.
+    load_stock(self, name, quantity, buy_price, date_of_purchase): Carga stock de un producto, actualizando
+    la base de datos.
